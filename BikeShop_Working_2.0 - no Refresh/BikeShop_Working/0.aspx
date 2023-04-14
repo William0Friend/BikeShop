@@ -13,11 +13,11 @@
         <!-- ... -->--%>
 <asp:Label ID="lblFirstName" runat="server" Text="First Name:"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<asp:TextBox ID="txtFirstName" runat="server" BackColor="#CCFFCC" BorderColor="#006600" CssClass="shadow" OnTextChanged="txtFirstName_TextChanged" Width="155px"></asp:TextBox><br />
+<asp:TextBox ID="txtFirstName" runat="server" BackColor="#CCFFCC" BorderColor="#006600" CssClass="shadow"  Width="155px"></asp:TextBox><br />
 
 <asp:Label ID="lblLastName" runat="server" Text="Last Name:"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<asp:TextBox ID="txtLastName" runat="server" BackColor="#99FF99" BorderColor="#006600" CssClass="shadow" OnTextChanged="txtLastName_TextChanged" Width="157px"></asp:TextBox><br />
+<asp:TextBox ID="txtLastName" runat="server" BackColor="#99FF99" BorderColor="#006600" CssClass="shadow" Width="157px"></asp:TextBox><br />
 
 <asp:Label ID="lblCreditCard" runat="server" Text="Credit Card:"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -41,11 +41,11 @@
 
 <asp:Label ID="lblCity" runat="server" Text="City:"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<asp:TextBox ID="txtCity" runat="server" BackColor="#99FF99" BorderColor="#006600" OnTextChanged="txtCity_TextChanged" Width="163px"></asp:TextBox><br />
+<asp:TextBox ID="txtCity" runat="server" BackColor="#99FF99" BorderColor="#006600" Width="163px"></asp:TextBox><br />
 
 <asp:Label ID="lblState" runat="server" Text="State:"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<asp:TextBox ID="txtState" runat="server" BorderColor="#006600" OnTextChanged="txtState_TextChanged" Width="165px"></asp:TextBox><br />
+<asp:TextBox ID="txtState" runat="server" BorderColor="#006600"  Width="165px"></asp:TextBox><br />
 
 <asp:Label ID="lblZipCode" runat="server" Text="Zip Code:"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -95,7 +95,7 @@
         <!-- ... -->
 
             First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="txtStaffFirstName" runat="server" CssClass="offset-sm-0" BackColor="#FFCC66" BorderColor="#990000" Width="140px" /><br />
-            Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="txtStaffLastName" runat="server" BackColor="#FFFF99" BorderColor="Maroon" OnTextChanged="txtStaffLastName_TextChanged" Width="141px" /><br />
+            Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="txtStaffLastName" runat="server" BackColor="#FFFF99" BorderColor="Maroon" Width="141px" /><br />
             Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="txtStaffEmail" runat="server" BackColor="#FFCC66" BorderColor="Maroon" Width="140px" /><br />
             Phone:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="txtStaffPhone" runat="server" BackColor="#FFFF99" BorderColor="Maroon" /><br />
             Is Manager: <asp:CheckBox ID="chkIsManager" runat="server" /><br />
@@ -208,11 +208,11 @@
    <!-- Add Store input fields -->
    <!-- ... -->
 
-        Store_Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="TextBox1" runat="server" BackColor="#666666" BorderColor="#EEEECC" ForeColor="White" OnTextChanged="TextBox1_TextChanged" Width="153px" /><br />
+        Store_Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="TextBox1" runat="server" BackColor="#666666" BorderColor="#EEEECC" ForeColor="White" Width="153px" /><br />
         Phone:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="TextBox2" runat="server" BackColor="#666666" BorderColor="#EEEECC" ForeColor="White" Width="155px" /><br />
         Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="TextBox3" runat="server" BackColor="#666666" BorderColor="#EEEECC" ForeColor="White" Width="157px" /><br />
         Street:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="TextBox4" runat="server" BackColor="#666666" BorderColor="#EEEECC" ForeColor="White" Width="158px" /><br />
-        City:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="TextBox5" runat="server" BackColor="#666666" BorderColor="#EEEECC" ForeColor="White" OnTextChanged="TextBox5_TextChanged" Width="154px" /><br />
+        City:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="TextBox5" runat="server" BackColor="#666666" BorderColor="#EEEECC" ForeColor="White"  Width="154px" /><br />
         State:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="TextBox6" runat="server" BackColor="#666666" BorderColor="#EEEECC" ForeColor="White" Width="156px" /><br />
         Zip_Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="TextBox7" runat="server" BackColor="#666666" BorderColor="#CCCCCC" ForeColor="White" Width="156px" />
       <br />
