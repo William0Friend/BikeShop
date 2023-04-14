@@ -475,7 +475,7 @@ namespace BikeShop_Working
             {
                 conn.Open();
                 string selectStockQuery = "SELECT Quantity FROM Stock WHERE Product_ID = @ProductID AND Store_ID = @SourceStoreID";
-                using (SqlCommand cmd = new SqlCommand(selectStockQuery, conn))
+                 using (SqlCommand cmd = new SqlCommand(selectStockQuery, conn))
                 {
                     cmd.Parameters.AddWithValue("@ProductID", productId);
                     cmd.Parameters.AddWithValue("@SourceStoreID", sourceStoreId);
@@ -494,19 +494,6 @@ namespace BikeShop_Working
                 }
             }
         }
-      
-        //// Clear the input fields and DropDownLists after placing the order
-        //ddlCustomer.SelectedIndex = 0;
-        //ddlStore.SelectedIndex = 0;
-        //ddlStaff.SelectedIndex = 0;
-        //ddlProduct.SelectedIndex = 0;
-        //ddlQuantity.SelectedIndex = 0;
-        //ddlSourceStore.SelectedIndex = 0;
-        //txtDiscount.Text = string.Empty;
-
-        //// Optionally, display a success message
-        //lblMessage.Text = "Order placed successfully!";
-        //}
 
 
     }
