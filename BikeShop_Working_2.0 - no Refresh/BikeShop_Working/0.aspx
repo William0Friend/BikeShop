@@ -884,7 +884,7 @@ o   Add bike name to stock table,
 
 
 <div class="container">
-<asp:Chart ID="SalesByStoreChart" runat="server" Width="600px" Height="400px" >
+<asp:Chart ID="SalesByStoreChart" runat="server" Width="600px" Height="400px">
     <Series>
         <asp:Series Name="SalesByStore" ChartType="Pie" XValueMember="Store_Name" YValueMembers="Total_Sales" IsValueShownAsLabel="True" Label="#VALX: #PERCENT{P2}">
             <SmartLabelStyle Enabled="True" />

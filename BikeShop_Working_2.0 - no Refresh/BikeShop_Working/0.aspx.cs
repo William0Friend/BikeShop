@@ -50,7 +50,10 @@ namespace BikeShop_Working
                 BindProductsGrid();
                 BindInventoryGrid();
 
-
+                //populate various dropdowns
+                PopulateStaffDropDown();
+                PopulateProductDropDown();
+                PopulateQuantityDropDown();
                 PopulateDDLBikeNameDropDownList();
                 PopulateDDLCustomerNameDropDownList();
                 PopulateDDLStoreNameDropDownList();
@@ -58,10 +61,7 @@ namespace BikeShop_Working
                 //pie chart
                 BindSalesByStoreChart();
                 //pie chart proof
-                BindSalesByStoreGrid();
-                PopulateStaffDropDown();
-                PopulateProductDropDown();
-                PopulateQuantityDropDown();
+                BindSalesByStoreGrid(); 
 
             }
 
@@ -266,9 +266,16 @@ namespace BikeShop_Working
                 chkIsManager.Checked = false;
                 ddlStaffStore.SelectedIndex = 0;
                 PopulateStoresDropDown();
-                PopulateProductNamesDropDown();
-                PopulateCustomerDropDown();
+                //PopulateProductNamesDropDown();
+                //PopulateCustomerDropDown();
                 PopulateSourceStoreDropDown();
+                PopulateStaffDropDown();
+                PopulateStoresDropDownList();
+                PopulateProductNamesDropDownList();
+                //populate various dropdowns
+               // PopulateStaffDropDown();
+                PopulateProductDropDown();
+                PopulateQuantityDropDown();
             }
         }
 
@@ -402,6 +409,12 @@ namespace BikeShop_Working
                // PopulateProductNamesDropDown();
                // PopulateCustomerDropDown();
                 PopulateSourceStoreDropDown();
+                PopulateStoresDropDownList();
+                PopulateProductNamesDropDownList();
+                //populate various dropdowns
+                PopulateStaffDropDown();
+                PopulateProductDropDown();
+                PopulateQuantityDropDown();
             }
         }
 
@@ -1185,15 +1198,8 @@ namespace BikeShop_Working
                      JOIN Order_Items ON Orders.Order_ID = Order_Items.Order_ID
                      JOIN Products ON Order_Items.Product_ID = Products.Product_ID
                      WHERE Customers.Customer_ID = {selectedCustomerID}";
-            /*string query = $@"SELECT Customers.First_Name, Customers.Last_Name, Orders.Order_ID, Stores.Store_Name, Products.Product_Name, Order_Items.Quantity
-                  FROM Customers
-                  JOIN Orders ON Customers.Customer_ID = Orders.Customer_ID
-                  JOIN Stores ON Orders.Store_ID = Stores.Store_ID
-                  JOIN Order_Items ON Orders.Order_ID = Order_Items.Order_ID
-                  JOIN Products ON Order_Items.Product_ID = Products.Product_ID
-                  WHERE Customers.Customer_ID = {selectedCustomerID}";*/
+           
             SqlCommand command = new SqlCommand(query);
-            //command.Parameters.AddWithValue("@CustomerName", ddlCustomerName.SelectedValue);
 
             BindDataToGridView(command, gvSoldItemsByCustomer);
         }
