@@ -900,6 +900,21 @@ o   Add bike name to stock table,
 
     </div>
 
+
+
+        <div class="container">
+            <asp:GridView ID="gvSalesByStore" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvSalesByStore_RowDataBound">
+    <Columns>
+        <asp:TemplateField HeaderText="Store Name">
+            <ItemTemplate>
+                <asp:Label ID="lblStoreName" runat="server" Text='<%# Eval("Store_Name") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:BoundField DataField="Total_Sales" HeaderText="Total Sales" DataFormatString="{0:C}" />
+    </Columns>
+</asp:GridView>
+            </div>
+
         </ContentTemplate>
    
         </asp:UpdatePanel>

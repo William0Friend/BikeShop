@@ -100,7 +100,10 @@ namespace BikeShop_Working
                 PopulateDDLCustomerNameDropDownList();
                 PopulateDDLStoreNameDropDownList();
                 PopulateDDLStaffNameDropDownList();
+                //pie chart
                 BindSalesByStoreChart();
+                //pie chart proof
+                BindSalesByStoreGrid();
 
             }
 
@@ -109,6 +112,7 @@ namespace BikeShop_Working
             PopulateQuantityDropDown();
             PopulateProductDropDown();
 
+            
             
         }
 
@@ -1384,6 +1388,8 @@ namespace BikeShop_Working
         }
 
 
+
+        //EXTRA CREDIT: pie chart
         private void BindSalesByStoreChart()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString2BikeShop2"].ConnectionString;
@@ -1406,6 +1412,108 @@ namespace BikeShop_Working
                 SalesByStoreChart.DataBind();
             }
         }
+
+
+
+
+
+
+        //proof of chart gridview
+        private void BindSalesByStoreGrid()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString2BikeShop2"].ConnectionString;
+            string query = @"SELECT Stores.Store_Name, SUM(Order_Items.Quantity * Products.List_Price) AS Total_Sales
+                     FROM Order_Items
+                     JOIN Orders ON Order_Items.Order_ID = Orders.Order_ID
+                     JOIN Products ON Order_Items.Product_ID = Products.Product_ID
+                     JOIN Stores ON Orders.Store_ID = Stores.Store_ID
+                     GROUP BY Stores.Store_Name";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                gvSalesByStore.DataSource = dataTable;
+                gvSalesByStore.DataBind();
+            }
+        }
+        //to color code
+        /*protected void gvSalesByStore_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label lblStoreName = (Label)e.Row.FindControl("lblStoreName");
+                string storeName = lblStoreName.Text;
+
+                // Assign a color based on the store name
+                switch (storeName)
+                {
+                    case "Store 1":
+                        e.Row.BackColor = System.Drawing.Color.Red;
+                        break;
+                    case "Store 2":
+                        e.Row.BackColor = System.Drawing.Color.Blue;
+                        break;
+                    case "Store 3":
+                        e.Row.BackColor = System.Drawing.Color.Green;
+                        break;
+                        // Add more cases for other store names and colors
+                }
+            }
+        }*/
+        protected void gvSalesByStore_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Dictionary<string, System.Drawing.Color> storeColors = GetStoreColorMapping();
+
+                Label lblStoreName = (Label)e.Row.FindControl("lblStoreName");
+                string storeName = lblStoreName.Text;
+
+                // Assign a color based on the store name
+                if (storeColors.ContainsKey(storeName))
+                {
+                    e.Row.BackColor = storeColors[storeName];
+                }
+            }
+        }
+      //create a method that returns a dictionary of store names and their corresponding colors.
+      //this dictionary in the gvSalesByStore_RowDataBound event handler to set the row colors dynamically.
+      //Create a method that returns a dictionary of store names and colors:
+
+private Dictionary<string, System.Drawing.Color> GetStoreColorMapping()
+        {
+            Dictionary<string, System.Drawing.Color> storeColors = new Dictionary<string, System.Drawing.Color>();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString2BikeShop2"].ConnectionString;
+            string query = "SELECT Store_ID, Store_Name FROM Stores";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string storeName = reader["Store_Name"].ToString();
+                        int storeId = Convert.ToInt32(reader["Store_ID"]);
+
+                        // Assign a color based on the store ID (you can modify this logic as needed)
+                        System.Drawing.Color storeColor = System.Drawing.Color.FromArgb(storeId * 50 % 256, storeId * 100 % 256, storeId * 150 % 256);
+                        storeColors[storeName] = storeColor;
+                    }
+                }
+            }
+
+            return storeColors;
+        }
+
 
     }
 }
