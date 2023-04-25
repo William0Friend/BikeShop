@@ -6,7 +6,7 @@
 
 <asp:UpdatePanel ID="UpdaePanel0" runat="server">
     <ContentTemplate>
-
+        <div class="container">
 <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>--%>
       <h2>Add Customer<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2BikeShop2 %>" SelectCommand="SELECT * FROM [Customers]"></asp:SqlDataSource>
@@ -87,8 +87,10 @@
             <SortedDescendingCellStyle BackColor="#D4DFE1" />
             <SortedDescendingHeaderStyle BackColor="#15524A" />
 </asp:GridView>
+        </div>
 
 
+        <div class="container">
         <h2>Add Staff</h2>
         <%--<!-- Add Staff input fields -->
         <!-- ... -->--%>
@@ -131,7 +133,9 @@
             <SortedDescendingCellStyle BackColor="#FCF6C0" />
             <SortedDescendingHeaderStyle BackColor="#820000" />
       </asp:GridView>
+        </div>
 
+        <div class="container">
         <h2> Add or Change Staff Location</h2>
             First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="TextBox98" runat="server" CssClass="offset-sm-0" BackColor="#FFCC66" BorderColor="#990000" Width="140px" /><br />
             Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="TextBox99" runat="server" BackColor="#FFFF99" BorderColor="Maroon" Width="141px" /><br />
@@ -163,7 +167,10 @@
                 <SortedDescendingCellStyle BackColor="#FCF6C0" />
                 <SortedDescendingHeaderStyle BackColor="#820000" />
             </asp:GridView>
+        </div>
 
+
+        <div class="container">
         <h2>
 
             Manage Staff      
@@ -174,6 +181,7 @@
 <%--        <!-- Manage Staff DropDownList and buttons -->
         <!-- ... -->
      --%> 
+
 <asp:DropDownList ID="ddlManagerStaff" AutoPostBack="true" runat="server" DataTextField="FullName" DataValueField="Staff_ID" BackColor="#FFFFCC" />
         
         <br />
@@ -209,7 +217,10 @@
           <SortedDescendingCellStyle BackColor="#FCF6C0" />
           <SortedDescendingHeaderStyle BackColor="#820000" />
       </asp:GridView>
+        </div>
 
+
+        <div class="container">
        <h2>Add Store</h2>
    <!-- Add Store input fields -->
    <!-- ... -->
@@ -271,6 +282,7 @@
         <SortedDescendingCellStyle BackColor="#EAEAD3" />
         <SortedDescendingHeaderStyle BackColor="#575357" />
     </asp:GridView>
+        </div>
       <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <br />
@@ -278,7 +290,7 @@
       <br />
        
 
-    
+    <div class="container">
     <h2>Place Order</h2>
         <%--<!-- Place Order input fields -->
         <!-- ... -->--%>
@@ -317,19 +329,21 @@
         <strong>
         <asp:Label ID="lblMessage" runat="server" ForeColor="#000066">Fill out above form to place an order...</asp:Label>
         </strong>
+        </div>
       <br />
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
             <%--order buttons--%>
+        <div class="container">
         <asp:Button ID="btnAddToOrder" runat="server" Text="Add to Order" OnClick="btnAddToOrder_Click" />
 
         <asp:Button ID="btnPlaceOrder" runat="server" Text="Place Order" OnClick="btnPlaceOrder_Click" />
-        
+        </div>
         
         
         <asp:Panel ID="pnlContainer" runat="server">
-
+            
         <asp:GridView ID="gvOrderItems" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical">
             <AlternatingRowStyle BackColor="#DCDCDC" />
     <Columns>
@@ -365,6 +379,7 @@
         <br />
         <br />
         <br />
+        <div class="container">
         Orders<asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" DataKeyNames="Order_ID" DataSourceID="SqlDataSource5" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical">
           <AlternatingRowStyle BackColor="#DCDCDC" />
           <Columns>
@@ -385,7 +400,9 @@
           <SortedDescendingCellStyle BackColor="#CAC9C9" />
           <SortedDescendingHeaderStyle BackColor="#000065" />
       </asp:GridView>
-      <asp:Label ID="Label6" runat="server" Text="Label">Orders</asp:Label>
+            </div>
+      <div class="container">
+        <asp:Label ID="Label6" runat="server" Text="Label">Orders</asp:Label>
         Item<asp:GridView ID="GridView5" runat="server" AutoGenerateColumns="False" DataKeyNames="Order_Item_ID" DataSourceID="SqlDataSource6" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical">
           <AlternatingRowStyle BackColor="#DCDCDC" />
           <Columns>
@@ -405,6 +422,8 @@
           <SortedDescendingCellStyle BackColor="#CAC9C9" />
           <SortedDescendingHeaderStyle BackColor="#000065" />
       </asp:GridView>
+        </div>
+        <div class="container">
       <asp:Label ID="Label7" runat="server" Text="Label">Stock</asp:Label>
       <asp:GridView ID="GridView6" runat="server" AutoGenerateColumns="False" DataKeyNames="Stock_ID" DataSourceID="SqlDataSource7" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical">
           <AlternatingRowStyle BackColor="#DCDCDC" />
@@ -424,8 +443,10 @@
           <SortedDescendingCellStyle BackColor="#CAC9C9" />
           <SortedDescendingHeaderStyle BackColor="#000065" />
       </asp:GridView>
+        </div>
         <br />
         <br />
+        <div class="container">
       <asp:Label ID="Label8" runat="server" Text="Label">Products...</asp:Label>
       <asp:GridView ID="GridView7" runat="server" AutoGenerateColumns="False" DataKeyNames="Product_ID" DataSourceID="SqlDataSource8" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None">
           <AlternatingRowStyle BackColor="PaleGoldenrod" />
@@ -446,7 +467,7 @@
           <SortedDescendingCellStyle BackColor="#E1DB9C" />
           <SortedDescendingHeaderStyle BackColor="#C2A47B" />
       </asp:GridView>
-               
+               </div>
         
         
         <br />
@@ -460,7 +481,7 @@
         <%--/*-	(10 points) Add Bike Name(Products) – fill in row properly in Bike(Product) take(Auto gen bike name id, bike name, bike brand id, bike cat id, model year, price
 o   (2 points) Pull down bike brand and bike category
 */--%>
-
+        <div class="container">
           <h2>Add Product</h2>
         Product Name: <asp:TextBox ID="txtProductName" runat="server"></asp:TextBox><br />
         Bike Brand: <asp:DropDownList ID="ddlBikeBrands" runat="server"></asp:DropDownList><br />
@@ -468,11 +489,11 @@ o   (2 points) Pull down bike brand and bike category
         Model Year: <asp:TextBox ID="txtModelYear" runat="server"></asp:TextBox><br />
         List Price: <asp:TextBox ID="txtListPrice" runat="server"></asp:TextBox><br />
         <asp:Button ID="btnAddProduct" runat="server" Text="Add Product" OnClick="btnAddProduct_Click" /><br />
-
+            </div>
         <%--Then display--%>
-
+        <div class="container">
         <h2>Products</h2>
-        <asp:GridView ID="gvProducts" runat="server" AutoGenerateColumns="False">
+        <asp:GridView ID="gvProducts" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4">
             <Columns>
                 <asp:BoundField DataField="Product_ID" HeaderText="Product ID" />
                 <asp:BoundField DataField="Product_Name" HeaderText="Product Name" />
@@ -481,14 +502,23 @@ o   (2 points) Pull down bike brand and bike category
                 <asp:BoundField DataField="Model_Year" HeaderText="Model Year" />
                 <asp:BoundField DataField="List_Price" HeaderText="List Price" />
             </Columns>
+            <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+            <RowStyle BackColor="White" ForeColor="#330099" />
+            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+            <SortedAscendingCellStyle BackColor="#FEFCEB" />
+            <SortedAscendingHeaderStyle BackColor="#AF0101" />
+            <SortedDescendingCellStyle BackColor="#F6F0C0" />
+            <SortedDescendingHeaderStyle BackColor="#7E0000" />
         </asp:GridView>
-
+        </div>
         
 <%--/*-	(10 points) Add inventory to stores - fill in row properly in stock table: auto gen stock id, bike name id, qty and store id
 o(2 point) Pull down bike names and store names
 o   Add bike name to stock table,
 */--%>
-
+        <div class="container">
         <h2>Add Inventory</h2>
         Store: <asp:DropDownList ID="ddlStores" runat="server"></asp:DropDownList><br />
         Product: <asp:DropDownList ID="ddlProductNames" runat="server"></asp:DropDownList><br />
@@ -496,18 +526,28 @@ o   Add bike name to stock table,
         <asp:Button ID="btnAddInventory" runat="server" Text="Add Inventory" OnClick="btnAddInventory_Click" /><br />
 
         <asp:Label ID="Label13" runat="server" ForeColor="Green"></asp:Label>
-
+            </div>
         <%--Then display--%>        
-        
+        <div class="container">
         <h2>Inventory</h2>
-        <asp:GridView ID="gvInventory" runat="server" AutoGenerateColumns="False">
+        <asp:GridView ID="gvInventory" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4">
             <Columns>
                 <asp:BoundField DataField="Stock_ID" HeaderText="Stock ID" />
                 <asp:BoundField DataField="Store_Name" HeaderText="Store Name" />
                 <asp:BoundField DataField="Product_Name" HeaderText="Product Name" />
                 <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
             </Columns>
+            <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+            <RowStyle BackColor="White" ForeColor="#330099" />
+            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+            <SortedAscendingCellStyle BackColor="#FEFCEB" />
+            <SortedAscendingHeaderStyle BackColor="#AF0101" />
+            <SortedDescendingCellStyle BackColor="#F6F0C0" />
+            <SortedDescendingHeaderStyle BackColor="#7E0000" />
         </asp:GridView>
+        </div>
 
 
 
@@ -516,13 +556,156 @@ o   Add bike name to stock table,
 
 
 
-<%--        -	(5 points) all items sold on all orders – display cust name, order id, store name, bike name, qty sold
+        
+        
+        <br />
+            <%--        -	(5 points) all items sold on all orders – display cust name, order id, store name, bike name, qty sold
+                  o	(1 point) pick just name from pull down list
+                  o	Select (cust_id), (order id), (store name) (bike name) (qty sold)—which is 10(starting amount) – qty per store--%>
+
+        <div class="container">
+        <h2>Dropdown and GridView for sold items by customer name</h2>
+        <!-- Dropdown and GridView for sold items by customer name -->
+        <asp:DropDownList ID="ddlCustomerName" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCustomerName_SelectedIndexChanged" EnableViewState="True" />
+
+<%--<asp:DropDownList ID="ddlCustomerName" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCustomerName_SelectedIndexChanged" />--%>
+<asp:GridView ID="gvSoldItemsByCustomer" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4">
+    <Columns>
+        <asp:BoundField DataField="First_Name" HeaderText="First Name" />
+        <asp:BoundField DataField="Last_Name" HeaderText="Last Name" />
+        <asp:BoundField DataField="Order_ID" HeaderText="Order ID" />
+        <asp:BoundField DataField="Store_Name" HeaderText="Store Name" />
+        <asp:BoundField DataField="Product_Name" HeaderText="Bike Name" />
+        <asp:BoundField DataField="Quantity" HeaderText="Quantity Sold" />
+    </Columns>
+    <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+    <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+    <RowStyle BackColor="White" ForeColor="#330099" />
+    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+    <SortedAscendingCellStyle BackColor="#FEFCEB" />
+    <SortedAscendingHeaderStyle BackColor="#AF0101" />
+    <SortedDescendingCellStyle BackColor="#F6F0C0" />
+    <SortedDescendingHeaderStyle BackColor="#7E0000" />
+</asp:GridView>
+        </div>
+         <%--     
+      
+         /*
+  * 
+  * -	(5 points) Bike qty available at all stores – display bike name, 
+  * store name of sale, qty, bike brand name, bike category name, store name where bike is from, 
+  * staff name that placed the order, discount amount on the order
+         o	(1 point) Pick from bike name pull down
+  */--%>
+        <div class="container">
+        <h2>Dropdown and GridView for bike quantity by bike name</h2>
+<!-- Dropdown and GridView for bike quantity by bike name -->
+<asp:DropDownList ID="ddlBikeName" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlBikeName_SelectedIndexChanged" EnableViewState="True" />
+<asp:GridView ID="gvBikeQuantityByBikeName" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4">
+    <Columns>
+        <asp:BoundField DataField="Product_Name" HeaderText="Bike Name" />
+        <asp:BoundField DataField="Store_Name" HeaderText="Store Name of Sale" />
+        <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
+        <asp:BoundField DataField="Brand_Name" HeaderText="Bike Brand Name" />
+        <asp:BoundField DataField="Category_Name" HeaderText="Bike Category Name" />
+        <asp:BoundField DataField="Source_Store_Name" HeaderText="Store Name where Bike is From" />
+        <asp:BoundField DataField="First_Name" HeaderText="Staff First Name" />
+        <asp:BoundField DataField="Last_Name" HeaderText="Staff Last Name" />
+        <asp:BoundField DataField="Discount" HeaderText="Discount Amount on the Order" />
+    </Columns>
+    <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+    <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+    <RowStyle BackColor="White" ForeColor="#330099" />
+    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+    <SortedAscendingCellStyle BackColor="#FEFCEB" />
+    <SortedAscendingHeaderStyle BackColor="#AF0101" />
+    <SortedDescendingCellStyle BackColor="#F6F0C0" />
+    <SortedDescendingHeaderStyle BackColor="#7E0000" />
+</asp:GridView>
+        </div>
+        <%--                //-	(5 points) Items Sold – list all items 
+            sold for each store by bike name and qty--%>
+
+        <div class="container">
+        <h2>Dropdown and GridView for items sold by store</h2>
+
+<!-- Dropdown and GridView for items sold by store -->
+
+<asp:DropDownList ID="ddlStoreName" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlStoreName_SelectedIndexChanged" EnableViewState="True"/>
+<%--<asp:GridView ID="gvItemsSoldByStore" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4">
+    <Columns>
+        <asp:BoundField DataField="Product_Name" HeaderText="Bike Name" />
+        <asp:BoundField DataField="Total_Sold" HeaderText="Quantity Sold" />
+    </Columns>
+    <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+    <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+    <RowStyle BackColor="White" ForeColor="#330099" />
+    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+    <SortedAscendingCellStyle BackColor="#FEFCEB" />
+    <SortedAscendingHeaderStyle BackColor="#AF0101" />
+    <SortedDescendingCellStyle BackColor="#F6F0C0" />
+    <SortedDescendingHeaderStyle BackColor="#7E0000" />
+</asp:GridView>--%>
+        <asp:GridView ID="gvItemsSoldByStore" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4">
+    <Columns>
+        <asp:BoundField DataField="Product_Name" HeaderText="Bike Name" />
+        <asp:BoundField DataField="Store_Name_of_Sale" HeaderText="Store Name of Sale" />
+        <asp:BoundField DataField="Qty" HeaderText="Quantity" />
+        <asp:BoundField DataField="Brand_Name" HeaderText="Bike Brand Name" />
+        <asp:BoundField DataField="Category_Name" HeaderText="Bike Category Name" />
+        <asp:BoundField DataField="Source_Store_Name" HeaderText="Store Name Where Bike Is From" />
+        <asp:BoundField DataField="Staff_Name" HeaderText="Staff Name" />
+        <asp:BoundField DataField="Discount_Amount" HeaderText="Discount Amount" />
+
+
+    </Columns>
+            <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+            <RowStyle BackColor="White" ForeColor="#330099" />
+            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+            <SortedAscendingCellStyle BackColor="#FEFCEB" />
+            <SortedAscendingHeaderStyle BackColor="#AF0101" />
+            <SortedDescendingCellStyle BackColor="#F6F0C0" />
+            <SortedDescendingHeaderStyle BackColor="#7E0000" />
+</asp:GridView>
+        </div>
+        <div class="container">
+<%--                //-	(5 points) Items sold by each staff
+    members – list of items sold by each staff member name include
+    bike name and qty sold--%>
+<h2> Dropdown and GridView for items sold by staff </h2>
+<asp:DropDownList ID="ddlStaffName" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlStaffName_SelectedIndexChanged" EnableViewState="True"/>
+<asp:GridView ID="gvItemsSoldByStaff" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4">
+    <Columns>
+        <asp:BoundField DataField="Product_Name" HeaderText="Bike Name" />
+        <asp:BoundField DataField="Total_Sold" HeaderText="Quantity Sold" />
+    </Columns>
+    <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+    <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+    <RowStyle BackColor="White" ForeColor="#330099" />
+    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+    <SortedAscendingCellStyle BackColor="#FEFCEB" />
+    <SortedAscendingHeaderStyle BackColor="#AF0101" />
+    <SortedDescendingCellStyle BackColor="#F6F0C0" />
+    <SortedDescendingHeaderStyle BackColor="#7E0000" />
+</asp:GridView>
+        </div>
+
+
+
+        <br />
+      <%--        -	(5 points) all items sold on all orders – display cust name, order id, store name, bike name, qty sold
                     o	(1 point) pick just name from pull down list
                     o	Select (cust_id), (order id), (store name) (bike name) (qty sold)—which is 10(starting amount) – qty per store--%>
         
         
-        
-        <asp:Button ID="btnFetchSoldItems" runat="server" Text="Fetch Sold Items" OnClick="btnFetchSoldItems_Click" />
+        <div class="container">
+        <asp:Button ID="btnFetchSoldItems" runat="server" Text="Fetch All Sold Items" OnClick="btnFetchSoldItems_Click" />
 
 <asp:GridView ID="gvSoldItems" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
     <Columns>
@@ -542,7 +725,7 @@ o   Add bike name to stock table,
     <SortedDescendingCellStyle BackColor="#CAC9C9" />
     <SortedDescendingHeaderStyle BackColor="#00547E" />
 </asp:GridView>
-        
+        </div>
    <%--     
         
            /*
@@ -554,8 +737,8 @@ o   Add bike name to stock table,
     */--%>
         
         
-        
-        <asp:Button ID="btnFetchAvailableBikes" runat="server" Text="Fetch Bike Quantity" OnClick="btnFetchAvailableBikes_Click" />
+        <div class="container">
+        <asp:Button ID="btnFetchAvailableBikes" runat="server" Text="Fetch All Bike Quantity" OnClick="btnFetchAvailableBikes_Click" />
 
 <asp:GridView ID="gvAvailableBikes" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
     <Columns>
@@ -578,11 +761,11 @@ o   Add bike name to stock table,
     <SortedDescendingCellStyle BackColor="#CAC9C9" />
     <SortedDescendingHeaderStyle BackColor="#00547E" />
 </asp:GridView>
-
+        </div>
 <%--                //-	(5 points) Items Sold – list all items sold for each store by bike name and qty--%>
 
-
-        <asp:Button ID="btnFetchItemsSold" runat="server" Text="Fetch Items Sold" OnClick="btnFetchItemsSold_Click" />
+        <div class="container">
+        <asp:Button ID="btnFetchItemsSold" runat="server" Text="Fetch All Items Sold" OnClick="btnFetchItemsSold_Click" />
 
 <asp:GridView ID="gvItemsSold" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
     <Columns>
@@ -600,11 +783,11 @@ o   Add bike name to stock table,
     <SortedDescendingCellStyle BackColor="#CAC9C9" />
     <SortedDescendingHeaderStyle BackColor="#00547E" />
 </asp:GridView>
-
+        </div>
 <%--                //-	(5 points) Items sold by each staff members – list of items sold by each staff member name include bike name and qty sold--%>
 
-        
-        <asp:Button ID="btnFetchStaffSales" runat="server" Text="Fetch Staff Sales" OnClick="btnFetchStaffSales_Click" />
+        <div class="container">
+        <asp:Button ID="btnFetchStaffSales" runat="server" Text="Fetch All Staff Sales" OnClick="btnFetchStaffSales_Click" />
 
 <asp:GridView ID="gvStaffSales" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
     <Columns>
@@ -622,71 +805,11 @@ o   Add bike name to stock table,
     <SortedDescendingCellStyle BackColor="#CAC9C9" />
     <SortedDescendingHeaderStyle BackColor="#00547E" />
 </asp:GridView>
-        
-        
-        
+        </div>
         <br />
 
 
-
-
-        <!-- Dropdown and GridView for sold items by customer name -->
-        <asp:DropDownList ID="ddlCustomerName" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCustomerName_SelectedIndexChanged" EnableViewState="True" />
-
-<%--<asp:DropDownList ID="ddlCustomerName" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCustomerName_SelectedIndexChanged" />--%>
-<asp:GridView ID="gvSoldItemsByCustomer" runat="server" AutoGenerateColumns="False">
-    <Columns>
-        <asp:BoundField DataField="First_Name" HeaderText="First Name" />
-        <asp:BoundField DataField="Last_Name" HeaderText="Last Name" />
-        <asp:BoundField DataField="Order_ID" HeaderText="Order ID" />
-        <asp:BoundField DataField="Store_Name" HeaderText="Store Name" />
-        <asp:BoundField DataField="Product_Name" HeaderText="Bike Name" />
-        <asp:BoundField DataField="Quantity" HeaderText="Quantity Sold" />
-    </Columns>
-</asp:GridView>
-
-<!-- Dropdown and GridView for bike quantity by bike name -->
-<asp:DropDownList ID="ddlBikeName" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlBikeName_SelectedIndexChanged" />
-<asp:GridView ID="gvBikeQuantityByBikeName" runat="server" AutoGenerateColumns="False">
-    <Columns>
-        <asp:BoundField DataField="Product_Name" HeaderText="Bike Name" />
-        <asp:BoundField DataField="Store_Name" HeaderText="Store Name of Sale" />
-        <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
-        <asp:BoundField DataField="Brand_Name" HeaderText="Bike Brand Name" />
-        <asp:BoundField DataField="Category_Name" HeaderText="Bike Category Name" />
-        <asp:BoundField DataField="Source_Store_Name" HeaderText="Store Name where Bike is From" />
-        <asp:BoundField DataField="First_Name" HeaderText="Staff First Name" />
-        <asp:BoundField DataField="Last_Name" HeaderText="Staff Last Name" />
-        <asp:BoundField DataField="Discount" HeaderText="Discount Amount on the Order" />
-    </Columns>
-</asp:GridView>
-
-<!-- Dropdown and GridView for items sold by store -->
-<asp:DropDownList ID="ddlStoreName" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlStoreName_SelectedIndexChanged" />
-<asp:GridView ID="gvItemsSoldByStore" runat="server" AutoGenerateColumns="False">
-    <Columns>
-        <asp:BoundField DataField="Product_Name" HeaderText="Bike Name" />
-        <asp:BoundField DataField="Total_Sold" HeaderText="Quantity Sold" />
-    </Columns>
-</asp:GridView>
-
-<!-- Dropdown and GridView for items sold by staff -->
-<asp:DropDownList ID="ddlStaffName" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlStaffName_SelectedIndexChanged" />
-<asp:GridView ID="gvItemsSoldByStaff" runat="server" AutoGenerateColumns="False">
-    <Columns>
-        <asp:BoundField DataField="Product_Name" HeaderText="Bike Name" />
-        <asp:BoundField DataField="Total_Sold" HeaderText="Quantity Sold" />
-    </Columns>
-</asp:GridView>
-
-
-
-
-        <br />
-      
-
-
-
+        <div class="container">
         
         <asp:Label ID="Label11" runat="server" Text="Label">Bike Brands</asp:Label>
     <asp:SqlDataSource ID="SqlDataSource11" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2BikeShop2 %>" SelectCommand="SELECT * FROM [Bike_Brands]"></asp:SqlDataSource>
@@ -705,6 +828,8 @@ o   Add bike name to stock table,
         <SortedDescendingCellStyle BackColor="#CAC9C9" />
         <SortedDescendingHeaderStyle BackColor="#383838" />
     </asp:GridView>
+            </div>
+            <div class="container">
      <asp:Label ID="Label10" runat="server" Text="Label">Bike Categories</asp:Label>
     <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2BikeShop2 %>" SelectCommand="SELECT * FROM [Bike_Categories]"></asp:SqlDataSource>
     <asp:GridView ID="GridView11" runat="server" AutoGenerateColumns="False" CellPadding="3" DataKeyNames="Category_ID" DataSourceID="SqlDataSource12" ForeColor="Black" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
@@ -722,6 +847,58 @@ o   Add bike name to stock table,
         <SortedDescendingCellStyle BackColor="#CAC9C9" />
         <SortedDescendingHeaderStyle BackColor="#383838" />
     </asp:GridView>
+            </div>
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="container">
+        <h2>Products vs Bike_Name</h2>
+
+            <asp:SqlDataSource ID="SqlDataSource14" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2BikeShop2 %>" SelectCommand="SELECT * FROM [Bike_Name]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource15" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2BikeShop2 %>" SelectCommand="SELECT * FROM [Products]"></asp:SqlDataSource>
+            <asp:GridView ID="GridView13" runat="server" AutoGenerateColumns="False" DataKeyNames="Bike_Name_ID" DataSourceID="SqlDataSource14">
+                <Columns>
+                    <asp:BoundField DataField="Bike_Name_ID" HeaderText="Bike_Name_ID" InsertVisible="False" ReadOnly="True" SortExpression="Bike_Name_ID" />
+                    <asp:BoundField DataField="Bike_Name" HeaderText="Bike_Name" SortExpression="Bike_Name" />
+                    <asp:BoundField DataField="Bike_Brand_ID" HeaderText="Bike_Brand_ID" SortExpression="Bike_Brand_ID" />
+                    <asp:BoundField DataField="Bike_Category_ID" HeaderText="Bike_Category_ID" SortExpression="Bike_Category_ID" />
+                    <asp:BoundField DataField="Bike_Model_Year" HeaderText="Bike_Model_Year" SortExpression="Bike_Model_Year" />
+                    <asp:BoundField DataField="Bike_Price" HeaderText="Bike_Price" SortExpression="Bike_Price" />
+                </Columns>
+            </asp:GridView>
+            <asp:GridView ID="GridView14" runat="server" AutoGenerateColumns="False" DataKeyNames="Product_ID" DataSourceID="SqlDataSource15">
+                <Columns>
+                    <asp:BoundField DataField="Product_ID" HeaderText="Product_ID" InsertVisible="False" ReadOnly="True" SortExpression="Product_ID" />
+                    <asp:BoundField DataField="Product_Name" HeaderText="Product_Name" SortExpression="Product_Name" />
+                    <asp:BoundField DataField="Brand_ID" HeaderText="Brand_ID" SortExpression="Brand_ID" />
+                    <asp:BoundField DataField="Category_ID" HeaderText="Category_ID" SortExpression="Category_ID" />
+                    <asp:BoundField DataField="Model_Year" HeaderText="Model_Year" SortExpression="Model_Year" />
+                    <asp:BoundField DataField="List_Price" HeaderText="List_Price" SortExpression="List_Price" />
+                    <asp:BoundField DataField="Bike_Name_ID" HeaderText="Bike_Name_ID" SortExpression="Bike_Name_ID" />
+                </Columns>
+            </asp:GridView>
+        </div>
+<div class="container">
+<asp:Chart ID="SalesByStoreChart" runat="server" Width="600px" Height="400px">
+    <Series>
+        <asp:Series Name="SalesByStore" ChartType="Pie" XValueMember="Store_Name" YValueMembers="Total_Sales" IsValueShownAsLabel="True" Label="#VALX: #PERCENT{P2}">
+            <SmartLabelStyle Enabled="True" />
+        </asp:Series>
+    </Series>
+    <ChartAreas>
+        <asp:ChartArea Name="ChartArea1">
+            <Area3DStyle Enable3D="True" />
+        </asp:ChartArea>
+    </ChartAreas>
+    <Titles>
+        <asp:Title Text="Percentage of Sales by Store" />
+    </Titles>
+</asp:Chart>
+
+
+    </div>
 
         </ContentTemplate>
    

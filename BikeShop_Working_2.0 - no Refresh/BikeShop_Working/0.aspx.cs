@@ -76,6 +76,8 @@ namespace BikeShop_Working
         {
             if (!Page.IsPostBack)
             {
+                conn.Open();
+                Label8.Text = "Products";
                 // Populate the customers, stores, staff, and products DropDownList
                 PopulateDropDownList(ddlCustomer, "SELECT Customer_ID, First_Name + ' ' + Last_Name AS FullName FROM Customers", "FullName", "Customer_ID");
                 PopulateDropDownList(ddlStore, "SELECT Store_ID, Store_Name FROM Stores", "Store_Name", "Store_ID");
@@ -92,6 +94,14 @@ namespace BikeShop_Working
                 // Bind the products and inventory grids
                 BindProductsGrid();
                 BindInventoryGrid();
+
+
+                PopulateDDLBikeNameDropDownList();
+                PopulateDDLCustomerNameDropDownList();
+                PopulateDDLStoreNameDropDownList();
+                PopulateDDLStaffNameDropDownList();
+                BindSalesByStoreChart();
+
             }
 
             // Populate any other controls that need to be populated on each load
@@ -99,10 +109,7 @@ namespace BikeShop_Working
             PopulateQuantityDropDown();
             PopulateProductDropDown();
 
-            PopulateDDLBikeNameDropDownList();
-            PopulateDDLCustomerNameDropDownList();
-            PopulateDDLStoreNameDropDownList();
-            PopulateDDLStaffNameDropDownList();
+            
         }
 
         // Populate Dropdowns
@@ -742,13 +749,7 @@ namespace BikeShop_Working
             }
         }
 
-        /*
-         *
-         * -	(5 points) Bike qty available at all stores – display bike name,
-         * store name of sale, qty, bike brand name, bike category name, store name where bike is from,
-         * staff name that placed the order, discount amount on the order
-                o	(1 point) Pick from bike name pull down
-         */
+       
 
         protected void btnFetchAvailableBikes_Click(object sender, EventArgs e)
         {
@@ -862,13 +863,7 @@ namespace BikeShop_Working
 
         //Part 2
         
-        /*-	(10 points) Add Bike Name(Products) – fill in row properly in Bike(Product) take(Auto gen bike name id, bike name, bike brand id, bike cat id, model year, price
-            o   (2 points) Pull down bike brand and bike category
-        */
-        /*-	(10 points) Add inventory to stores - fill in row properly in stock table: auto gen stock id, bike name id, qty and store id
-            o(2 point) Pull down bike names and store names
-            o   Add bike name to stock table,
-        */
+       
 
         private void PopulateBikeBrandsDropDownList()
         {
@@ -981,8 +976,11 @@ namespace BikeShop_Working
             //PopulateStoresDropDownList();
             PopulateProductNamesDropDownList();
         }
+        /*-	(10 points) Add inventory to stores - fill in row properly in stock table: auto gen stock id, bike name id, qty and store id
+           o(2 point) Pull down bike names and store names
+           o   Add bike name to stock table,
+       */
 
-        
         protected void btnAddInventory_Click(object sender, EventArgs e)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString2BikeShop2"].ConnectionString;
@@ -1046,10 +1044,11 @@ namespace BikeShop_Working
             }
 
             // After updating or inserting a new inventory, update the dropdowns:
-            PopulateBikeBrandsDropDownList();
+            //PopulateBikeBrandsDropDownList();
             //PopulateBikeCategoriesDropDownList();
             //PopulateStoresDropDownList();
-            PopulateProductNamesDropDownList();
+            //PopulateProductNamesDropDownList();
+            PopulateQuantityDropDown();
             //Bind to page
             BindInventoryGrid();
 
@@ -1216,7 +1215,7 @@ namespace BikeShop_Working
                 ddlCustomerName.DataBind();
             }
         }
-            protected void ddlCustomerName_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlCustomerName_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedCustomerID = ddlCustomerName.SelectedValue;
             string query = $@"SELECT Customers.First_Name, Customers.Last_Name, Orders.Order_ID, Stores.Store_Name, Products.Product_Name, Order_Items.Quantity
@@ -1234,11 +1233,14 @@ namespace BikeShop_Working
                   JOIN Products ON Order_Items.Product_ID = Products.Product_ID
                   WHERE Customers.Customer_ID = {selectedCustomerID}";*/
             SqlCommand command = new SqlCommand(query);
-            command.Parameters.AddWithValue("@CustomerName", ddlCustomerName.SelectedValue);
+            //command.Parameters.AddWithValue("@CustomerName", ddlCustomerName.SelectedValue);
 
             BindDataToGridView(command, gvSoldItemsByCustomer);
         }
-
+        
+        /*-	(10 points) Add Bike Name(Products) – fill in row properly in Bike(Product) take(Auto gen bike name id, bike name, bike brand id, bike cat id, model year, price
+          o   (2 points) Pull down bike brand and bike category
+      */
         private void PopulateDDLBikeNameDropDownList()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString2BikeShop2"].ConnectionString;
@@ -1255,28 +1257,8 @@ namespace BikeShop_Working
                 ddlBikeName.DataBind();
             }
         }
-
-  /*      protected void ddlBikeName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedBikeNameID = ddlBikeName.SelectedValue;
-            string query = $@"SELECT Products.Product_Name, Stores.Store_Name, Order_Items.Quantity, Bike_Brands.Brand_Name, Bike_Categories.Category_Name, SourceStores.Store_Name AS Source_Store_Name, Staff.First_Name, Staff.Last_Name, Orders.Discount
-                     FROM Order_Items
-                     JOIN Products ON Order_Items.Product_ID = Products.Product_ID
-                     JOIN Stores ON Order_Items.Source_Store_ID = Stores.Store_ID
-                     JOIN Bike_Brands ON Products.Brand_ID = Bike_Brands.Brand_ID
-                     JOIN Bike_Categories ON Products.Category_ID = Bike_Categories.Category_ID
-                     JOIN Stores AS SourceStores ON Order_Items.Source_Store_ID = SourceStores.Store_ID
-                     JOIN Orders ON Order_Items.Order_ID = Orders.Order_ID
-                     JOIN Staff ON Orders.Staff_ID = Staff.Staff_ID
-                     WHERE Products.Bike_Name_ID = {selectedBikeNameID}";
-
-
-            SqlCommand command = new SqlCommand(query);
-            command.Parameters.AddWithValue("@BikeName", ddlBikeName.SelectedValue);
-
-            BindDataToGridView(command, gvBikeQuantityByBikeName);
-        }
-    */    protected void ddlBikeName_SelectedIndexChanged(object sender, EventArgs e)
+       
+        protected void ddlBikeName_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedBikeNameID = ddlBikeName.SelectedValue;
             string query = $@"SELECT Products.Product_Name, Stores.Store_Name, Order_Items.Quantity, Bike_Brands.Brand_Name, Bike_Categories.Category_Name, SourceStores.Store_Name AS Source_Store_Name, Staff.First_Name, Staff.Last_Name, Orders.Discount
@@ -1291,9 +1273,18 @@ namespace BikeShop_Working
                  WHERE Products.Product_ID = {selectedBikeNameID}";
 
             SqlCommand command = new SqlCommand(query);
+            //command.Parameters.AddWithValue("@BikeName", ddlBikeName.SelectedValue);
 
             BindDataToGridView(command, gvBikeQuantityByBikeName);
         }
+
+        /*
+        *
+        * -	(5 points) Bike qty available at all stores – display bike name,
+        * store name of sale, qty, bike brand name, bike category name, store name where bike is from,
+        * staff name that placed the order, discount amount on the order
+               o	(1 point) Pick from bike name pull down
+        */
         private void PopulateDDLStoreNameDropDownList()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString2BikeShop2"].ConnectionString;
@@ -1310,17 +1301,50 @@ namespace BikeShop_Working
                 ddlStoreName.DataBind();
             }
         }
+        /* protected void ddlStoreName_SelectedIndexChanged(object sender, EventArgs e)
+         {
+             string selectedStoreID = ddlStoreName.SelectedValue;
+             string query = $@"SELECT Products.Product_Name, SUM(Order_Items.Quantity) AS Total_Sold
+                      FROM Order_Items
+                      JOIN Orders ON Order_Items.Order_ID = Orders.Order_ID
+                      JOIN Products ON Order_Items.Product_ID = Products.Product_ID
+                      WHERE Orders.Store_ID = {selectedStoreID}
+                      GROUP BY Products.Product_Name";
+             SqlCommand command = new SqlCommand(query);
+             //command.Parameters.AddWithValue("@StoreName", ddlStoreName.SelectedValue);
+
+             BindDataToGridView(command, gvItemsSoldByStore);
+         }*/
         protected void ddlStoreName_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedStoreID = ddlStoreName.SelectedValue;
-            string query = $@"SELECT Products.Product_Name, SUM(Order_Items.Quantity) AS Total_Sold
+            string query = $@"SELECT 
+                        Products.Product_Name, 
+                        Stores.Store_Name AS Store_Name_of_Sale, 
+                        SUM(Order_Items.Quantity) AS Qty, 
+                        Brands.Brand_Name,
+                        Categories.Category_Name,
+                        SourceStores.Store_Name AS Source_Store_Name, 
+                        Staff.First_Name + ' ' + Staff.Last_Name AS Staff_Name,
+                        Orders.Discount_Amount
                      FROM Order_Items
                      JOIN Orders ON Order_Items.Order_ID = Orders.Order_ID
                      JOIN Products ON Order_Items.Product_ID = Products.Product_ID
+                     JOIN Stores ON Orders.Store_ID = Stores.Store_ID
+                     JOIN Staff ON Orders.Staff_ID = Staff.Staff_ID
+                     JOIN Stores AS SourceStores ON Products.Store_ID = SourceStores.Store_ID
+                     JOIN Brands ON Products.Brand_ID = Brands.Brand_ID
+                     JOIN Categories ON Products.Category_ID = Categories.Category_ID
                      WHERE Orders.Store_ID = {selectedStoreID}
-                     GROUP BY Products.Product_Name";
+                     GROUP BY Products.Product_Name, 
+                              Stores.Store_Name, 
+                              Brands.Brand_Name, 
+                              Categories.Category_Name, 
+                              SourceStores.Store_Name, 
+                              Staff.First_Name, 
+                              Staff.Last_Name, 
+                              Orders.Discount_Amount";
             SqlCommand command = new SqlCommand(query);
-            command.Parameters.AddWithValue("@StoreName", ddlStoreName.SelectedValue);
 
             BindDataToGridView(command, gvItemsSoldByStore);
         }
@@ -1354,13 +1378,34 @@ namespace BikeShop_Working
 
 
             SqlCommand command = new SqlCommand(query);
-            command.Parameters.AddWithValue("@StaffName", ddlStaffName.SelectedValue);
+           // command.Parameters.AddWithValue("@StaffName", ddlStaffName.SelectedValue);
 
             BindDataToGridView(command, gvItemsSoldByStaff);
         }
 
 
+        private void BindSalesByStoreChart()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString2BikeShop2"].ConnectionString;
+            string query = @"SELECT Stores.Store_Name, SUM(Order_Items.Quantity * Products.List_Price) AS Total_Sales
+                     FROM Order_Items
+                     JOIN Orders ON Order_Items.Order_ID = Orders.Order_ID
+                     JOIN Products ON Order_Items.Product_ID = Products.Product_ID
+                     JOIN Stores ON Orders.Store_ID = Stores.Store_ID
+                     GROUP BY Stores.Store_Name";
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                SalesByStoreChart.DataSource = dataTable;
+                SalesByStoreChart.DataBind();
+            }
+        }
 
     }
 }
@@ -1438,4 +1483,24 @@ protected void btnAddProduct_Click(object sender, EventArgs e)
 }
 
 
-*/
+*//*      protected void ddlBikeName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedBikeNameID = ddlBikeName.SelectedValue;
+            string query = $@"SELECT Products.Product_Name, Stores.Store_Name, Order_Items.Quantity, Bike_Brands.Brand_Name, Bike_Categories.Category_Name, SourceStores.Store_Name AS Source_Store_Name, Staff.First_Name, Staff.Last_Name, Orders.Discount
+                     FROM Order_Items
+                     JOIN Products ON Order_Items.Product_ID = Products.Product_ID
+                     JOIN Stores ON Order_Items.Source_Store_ID = Stores.Store_ID
+                     JOIN Bike_Brands ON Products.Brand_ID = Bike_Brands.Brand_ID
+                     JOIN Bike_Categories ON Products.Category_ID = Bike_Categories.Category_ID
+                     JOIN Stores AS SourceStores ON Order_Items.Source_Store_ID = SourceStores.Store_ID
+                     JOIN Orders ON Order_Items.Order_ID = Orders.Order_ID
+                     JOIN Staff ON Orders.Staff_ID = Staff.Staff_ID
+                     WHERE Products.Bike_Name_ID = {selectedBikeNameID}";
+
+
+            SqlCommand command = new SqlCommand(query);
+            command.Parameters.AddWithValue("@BikeName", ddlBikeName.SelectedValue);
+
+            BindDataToGridView(command, gvBikeQuantityByBikeName);
+        }
+    */
