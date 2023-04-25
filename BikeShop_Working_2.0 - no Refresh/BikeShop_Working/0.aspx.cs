@@ -23,54 +23,9 @@ namespace BikeShop_Working
 
         protected void Page_Init(object sender, EventArgs e)
         {
-           /* // Populate the customers, stores, staff, and products DropDownList
-            PopulateDropDownList(ddlCustomer, "SELECT Customer_ID, First_Name + ' ' + Last_Name AS FullName FROM Customers", "FullName", "Customer_ID");
-            PopulateDropDownList(ddlStore, "SELECT Store_ID, Store_Name FROM Stores", "Store_Name", "Store_ID");
-            PopulateDropDownList(ddlStaff, "SELECT Staff_ID, First_Name + ' ' + Last_Name AS FullName FROM Staff", "FullName", "Staff_ID");
-            PopulateDropDownList(ddlProduct, "SELECT Product_ID, Product_Name FROM Products", "Product_Name", "Product_ID");
-            PopulateDropDownList(ddlSourceStore, "SELECT Store_ID, Store_Name FROM Stores", "Store_Name", "Store_ID");
-            */
-            
-            /*PopulateStoresDropDown();
-            PopulateProductNamesDropDown();
-            PopulateCustomerDropDown();
-            PopulateSourceStoreDropDown();*/
+          
         }
-        /*protected void Page_Load(object sender, EventArgs e)
-        {
-            //if it should be called only once
-            if (!Page.IsPostBack)
-            {
-                conn.Open();
-                Label8.Text = "Products";
 
-                // Populate the customers, stores, staff, and products DropDownList
-               *//* PopulateStoresDropDown();
-                PopulateProductNamesDropDown();
-                PopulateCustomerDropDown();
-                PopulateSourceStoreDropDown();*//*
-               
-            }
-            // Populate any DropDownLists or other controls with initial data
-            PopulateStaffDropDown();
-            PopulateQuantityDropDown();
-            PopulateProductDropDown();
-
-            //Inventory and Products(Bike Names)
-            PopulateBikeBrandsDropDownList();
-            PopulateBikeCategoriesDropDownList();
-            PopulateStoresDropDownList();
-            PopulateProductNamesDropDownList();
-            BindProductsGrid();
-            BindInventoryGrid();
-
-            //
-            PopulateDDLBikeNameDropDownList();
-            PopulateDDLCustomerNameDropDownList();
-            PopulateDDLStoreNameDropDownList();
-            PopulateDDLStaffNameDropDownList();
-        }
-*/
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -104,15 +59,12 @@ namespace BikeShop_Working
                 BindSalesByStoreChart();
                 //pie chart proof
                 BindSalesByStoreGrid();
+                PopulateStaffDropDown();
+                PopulateProductDropDown();
+                PopulateQuantityDropDown();
 
             }
 
-            // Populate any other controls that need to be populated on each load
-            PopulateStaffDropDown();
-            PopulateQuantityDropDown();
-            PopulateProductDropDown();
-
-            
             
         }
 
@@ -978,6 +930,11 @@ namespace BikeShop_Working
             //PopulateBikeBrandsDropDownList();
             //PopulateBikeCategoriesDropDownList();
             //PopulateStoresDropDownList();
+            txtProductName.Text = string.Empty;
+            ddlBikeBrands.SelectedIndex = 0;
+            ddlBikeCategories.SelectedIndex = 0;
+            txtModelYear.Text = string.Empty;
+            txtListPrice.Text = string.Empty;
             PopulateProductNamesDropDownList();
         }
         /*-	(10 points) Add inventory to stores - fill in row properly in stock table: auto gen stock id, bike name id, qty and store id
@@ -1047,12 +1004,11 @@ namespace BikeShop_Working
                 }
             }
 
-            // After updating or inserting a new inventory, update the dropdowns:
-            //PopulateBikeBrandsDropDownList();
-            //PopulateBikeCategoriesDropDownList();
-            //PopulateStoresDropDownList();
-            //PopulateProductNamesDropDownList();
+
             PopulateQuantityDropDown();
+            ddlStores.SelectedIndex = 0;
+            ddlProductNames.SelectedIndex = 0;
+            txtQuantity.Text= string.Empty;
             //Bind to page
             BindInventoryGrid();
 
@@ -1305,55 +1261,59 @@ namespace BikeShop_Working
                 ddlStoreName.DataBind();
             }
         }
-        /* protected void ddlStoreName_SelectedIndexChanged(object sender, EventArgs e)
-         {
-             string selectedStoreID = ddlStoreName.SelectedValue;
-             string query = $@"SELECT Products.Product_Name, SUM(Order_Items.Quantity) AS Total_Sold
-                      FROM Order_Items
-                      JOIN Orders ON Order_Items.Order_ID = Orders.Order_ID
-                      JOIN Products ON Order_Items.Product_ID = Products.Product_ID
-                      WHERE Orders.Store_ID = {selectedStoreID}
-                      GROUP BY Products.Product_Name";
-             SqlCommand command = new SqlCommand(query);
-             //command.Parameters.AddWithValue("@StoreName", ddlStoreName.SelectedValue);
-
-             BindDataToGridView(command, gvItemsSoldByStore);
-         }*/
-        protected void ddlStoreName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedStoreID = ddlStoreName.SelectedValue;
+            protected void ddlStoreName_SelectedIndexChanged(object sender, EventArgs e)
+            {
+                string selectedStoreID = ddlStoreName.SelectedValue;
             string query = $@"SELECT 
-                        Products.Product_Name, 
-                        Stores.Store_Name AS Store_Name_of_Sale, 
-                        SUM(Order_Items.Quantity) AS Qty, 
-                        Brands.Brand_Name,
-                        Categories.Category_Name,
-                        SourceStores.Store_Name AS Source_Store_Name, 
-                        Staff.First_Name + ' ' + Staff.Last_Name AS Staff_Name,
-                        Orders.Discount_Amount
-                     FROM Order_Items
-                     JOIN Orders ON Order_Items.Order_ID = Orders.Order_ID
-                     JOIN Products ON Order_Items.Product_ID = Products.Product_ID
-                     JOIN Stores ON Orders.Store_ID = Stores.Store_ID
-                     JOIN Staff ON Orders.Staff_ID = Staff.Staff_ID
-                     JOIN Stores AS SourceStores ON Products.Store_ID = SourceStores.Store_ID
-                     JOIN Brands ON Products.Brand_ID = Brands.Brand_ID
-                     JOIN Categories ON Products.Category_ID = Categories.Category_ID
-                     WHERE Orders.Store_ID = {selectedStoreID}
-                     GROUP BY Products.Product_Name, 
-                              Stores.Store_Name, 
-                              Brands.Brand_Name, 
-                              Categories.Category_Name, 
-                              SourceStores.Store_Name, 
-                              Staff.First_Name, 
-                              Staff.Last_Name, 
-                              Orders.Discount_Amount";
+                Products.Product_Name AS Product_Name, 
+                Stores.Store_Name AS Store_Name_of_Sale, 
+                SUM(Order_Items.Quantity) AS Qty, 
+                Bike_Brands.Brand_Name AS Brand_Name,
+                Bike_Categories.Category_Name AS Category_Name,
+                SourceStores.Store_Name AS Source_Store_Name, 
+                Staff.First_Name + ' ' + Staff.Last_Name AS Staff_Name,
+                Orders.Discount AS Discount
+            FROM Order_Items
+            JOIN Orders ON Order_Items.Order_ID = Orders.Order_ID
+            JOIN Products ON Order_Items.Product_ID = Products.Product_ID
+            JOIN Stores ON Orders.Store_ID = Stores.Store_ID
+            JOIN Staff ON Orders.Staff_ID = Staff.Staff_ID
+            JOIN Stores AS SourceStores ON Order_Items.Source_Store_ID = SourceStores.Store_ID
+            JOIN Bike_Brands ON Products.Brand_ID = Bike_Brands.Brand_ID
+            JOIN Bike_Categories ON Products.Category_ID = Bike_Categories.Category_ID
+            WHERE Orders.Store_ID = @selectedStoreID
+            GROUP BY Products.Product_Name, 
+                Stores.Store_Name, 
+                Bike_Brands.Brand_Name, 
+                Bike_Categories.Category_Name, 
+                SourceStores.Store_Name, 
+                Staff.First_Name, 
+                Staff.Last_Name, 
+                Orders.Discount";
+
             SqlCommand command = new SqlCommand(query);
+            command.Parameters.AddWithValue("@selectedStoreID", selectedStoreID);
 
             BindDataToGridView(command, gvItemsSoldByStore);
-        }
+            }
 
-        private void PopulateDDLStaffNameDropDownList()
+            /*
+             protected void ddlStoreName_SelectedIndexChanged(object sender, EventArgs e)
+             {
+                 string selectedStoreID = ddlStoreName.SelectedValue;
+                 string query = $@"SELECT Products.Product_Name, SUM(Order_Items.Quantity) AS Total_Sold
+                          FROM Order_Items
+                          JOIN Orders ON Order_Items.Order_ID = Orders.Order_ID
+                          JOIN Products ON Order_Items.Product_ID = Products.Product_ID
+                          WHERE Orders.Store_ID = {selectedStoreID}
+                          GROUP BY Products.Product_Name";
+                 SqlCommand command = new SqlCommand(query);
+                 //command.Parameters.AddWithValue("@StoreName", ddlStoreName.SelectedValue);
+
+                 BindDataToGridView(command, gvItemsSoldByStore);
+             }*/
+          
+            private void PopulateDDLStaffNameDropDownList()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString2BikeShop2"].ConnectionString;
 /*            string query = "SELECT Staff_ID, Last_Name FROM Staff";
@@ -1504,7 +1464,7 @@ private Dictionary<string, System.Drawing.Color> GetStoreColorMapping()
                         string storeName = reader["Store_Name"].ToString();
                         int storeId = Convert.ToInt32(reader["Store_ID"]);
 
-                        // Assign a color based on the store ID (you can modify this logic as needed)
+                        // Assign a color based on the store ID
                         System.Drawing.Color storeColor = System.Drawing.Color.FromArgb(storeId * 50 % 256, storeId * 100 % 256, storeId * 150 % 256);
                         storeColors[storeName] = storeColor;
                     }

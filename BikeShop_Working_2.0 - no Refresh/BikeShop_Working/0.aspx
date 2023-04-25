@@ -658,7 +658,7 @@ o   Add bike name to stock table,
         <asp:BoundField DataField="Category_Name" HeaderText="Bike Category Name" />
         <asp:BoundField DataField="Source_Store_Name" HeaderText="Store Name Where Bike Is From" />
         <asp:BoundField DataField="Staff_Name" HeaderText="Staff Name" />
-        <asp:BoundField DataField="Discount_Amount" HeaderText="Discount Amount" />
+        <asp:BoundField DataField="Discount" HeaderText="Discount Amount" />
 
 
     </Columns>
@@ -762,7 +762,8 @@ o   Add bike name to stock table,
     <SortedDescendingHeaderStyle BackColor="#00547E" />
 </asp:GridView>
         </div>
-<%--                //-	(5 points) Items Sold – list all items sold for each store by bike name and qty--%>
+<%--                //-	(5 points) Items Sold – list all items sold for each store by bike name and qty, bike brand name, bike category name, store name where bike is from, 
+    * staff name that placed the order, discount amount on the order--%>
 
         <div class="container">
         <asp:Button ID="btnFetchItemsSold" runat="server" Text="Fetch All Items Sold" OnClick="btnFetchItemsSold_Click" />
@@ -880,8 +881,10 @@ o   Add bike name to stock table,
                 </Columns>
             </asp:GridView>
         </div>
+
+
 <div class="container">
-<asp:Chart ID="SalesByStoreChart" runat="server" Width="600px" Height="400px">
+<asp:Chart ID="SalesByStoreChart" runat="server" Width="600px" Height="400px" >
     <Series>
         <asp:Series Name="SalesByStore" ChartType="Pie" XValueMember="Store_Name" YValueMembers="Total_Sales" IsValueShownAsLabel="True" Label="#VALX: #PERCENT{P2}">
             <SmartLabelStyle Enabled="True" />
